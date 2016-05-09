@@ -7,12 +7,12 @@
   <env-entry>
     <env-entry-name>local-storage-path</env-entry-name>
     <env-entry-type>java.lang.String</env-entry-type>
-    <env-entry-value>c:/1/images/</env-entry-value>
+    <env-entry-value>/temp/</env-entry-value>
   </env-entry>
   <env-entry>
     <env-entry-name>cache-path</env-entry-name>
     <env-entry-type>java.lang.String</env-entry-type>
-    <env-entry-value>c:/1/temp/</env-entry-value>
+    <env-entry-value>/temp/</env-entry-value>
   </env-entry>  
   <env-entry>
     <env-entry-name>disable-upload</env-entry-name>

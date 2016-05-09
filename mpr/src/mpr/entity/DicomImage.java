@@ -79,9 +79,9 @@ public class DicomImage {
 			try {
 				File f = file.getFile();
 				ImageInputStream iis = ImageIO.createImageInputStream(f);
-//				if (iis == null) {
-//					throw new IllegalStateException(String.format("Empty ImageInputStream for file %s", f.getName()));
-//				}
+				if (iis == null) {
+					throw new IllegalStateException(String.format("Empty ImageInputStream for file %s", f.getName()));
+				}
 				iis.seek(0L);
 				dis = new DicomInputStream(new ImageInputStreamAdapter(iis));
 				dis.setIncludeBulkData(IncludeBulkData.URI);
