@@ -1,0 +1,133 @@
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+		  <button type="button" class="navbar-toggle menu-button" data-ng-click="expanded = !expanded">
+			<span class="glyphicon glyphicon-align-justify"></span>
+		  </button>            
+          <a class="navbar-brand" href="index.html"><span>DICOM</span> HTML5 viewer</a>          
+		</div>
+		<div class="collapse navbar-collapse" data-uib-collapse="!expanded">  
+          <ul class="nav navbar-nav navbar-right">
+            <li data-ng-hide="uploadDisabled" >
+            	<a href="#" data-ng-class="{'nav-disabled': uploadDisabled == true}"
+            		data-ngf-select="uploadFiles($files)" data-ngf-multiple="true" data-accept="*">Upload <i class="fa fa-cloud-upload"></i></a></li>
+            <li data-ng-show="false"><a href="settings.html">Settings <i class="fa fa-edit"></i></a></li>
+            <!-- <li data-ng-show="showAbout"><a href="#/about">About</a></li>  -->
+          </ul>
+		  <form class="navbar-form navbar-right" role="search">
+			<div class="form-group">
+				<input data-ng-model="tag" type="text" class="form-control input-sm" placeholder="Enter search keyword" data-on-enter="show(modality, tag)"></input>
+			    <i class="fa fa-search" data-ng-click="show(modality, tag)"></i>
+			</div>
+		  </form>
+        </div>
+
+      </div><!-- /.container-fluid -->      
+    </nav>
+<div id="spinner" class="loading">
+<img data-ng-src="images/spinner.gif" class="img-loading">
+</div>			    
+    <!-- begin:content -->
+    <div id="content" >
+      <div class="container" >
+        <div id="box-container" class="row" data-masonry>
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="img-container box">
+              <div class="img-desc">
+				<h2>DICOM html5 viewer.</h2>
+				<p>Library is built with examinations acquired from our partners in Poland like <a href="http://www.helimed.pl/en/">HELIMED Diagnostic Imaging</a>, the largest company in Silesia providing service in Magnetic Resonance and Computed Tomography.</p>
+                <a href="#/about" class="btn btn-default btn-sm">See more &rarr;</a>
+              </div>
+              <div class="menu">
+                <ul class="nav nav-elem">
+                  <li data-ng-class="{'active': modality == 'ALL'}"><a data-ng-click="show('ALL')"><i class="fa fa-folder-o"></i> All modalities</a></li>
+                  <li data-ng-class="{'active': modality == 'MR'}"><a data-ng-click="show('MR')"><i class="fa fa-file-o"></i> MRI</a></li>
+                  <li data-ng-class="{'active': modality == 'CT'}"><a data-ng-click="show('CT')"><i class="fa fa-file-text-o"></i> CT</a></li>
+                  <li data-ng-class="{'active': modality == 'PET-CT'}"><a data-ng-click="show('PET-CT')"><i class="fa fa-file-text"></i> PET-CT</a></li>
+                  <li data-ng-show="false" data-ng-class="{'active': modality == 'CT64'}"><a data-ng-click="show('CT64')"><i class="fa fa-file-image-o"></i> CT64</a></li>
+                  <li data-ng-class="{'active': modality == 'CR'}"><a data-ng-click="show('CR')"><i class="fa fa-file"></i> CR</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+          <div class="col-md-3 col-sm-3 col-xs-12" data-ng-repeat="s in studies" data-ng-init="$last && reload()">
+            <div class="img-container box">
+              <div class="img-option">
+                <ul class="list-options">
+                  <li><a data-ng-click="viewImage(s)"><i class="fa fa-television"></i> <span>View</span></a></li>
+                  <li data-ng-show="s.reconstructed"><a href="#/threed/{{s.studyInstanceUID}}"><i class="fa fa-stack-overflow"></i> <span>3D</span></a></li>
+                  <li data-ng-show="s.downloadable"><a href="download?id={{s.studyInstanceUID}}.zip"><i class="fa fa-cloud-download"></i> <span>Download</span></a></li>
+                </ul>
+              </div>
+              <div class="image">
+                <a title="{{s.desc}}" data-ng-dblclick="viewImage(s)"><img data-ng-src="{{thumbnail(s)}}" class="img-responsive" alt="{{s.desc}}"></a>
+              </div>
+              <div class="img-desc">
+                <i class="fa fa-tags"></i> {{s.studyDescription || s.accessionNumber}}
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+                    
+          <div class="col-md-3 col-sm-3 col-xs-12" data-ng-hide="uploadDisabled">
+            <div class="img-container box">
+              <div class="image">
+	           	<ul>
+	 			<li data-ng-repeat="s in studies" data-ng-click="viewImage(s)">{{s.studyInstanceUID}},{{s.studyDescription}}
+	 			</ul>
+	 			<br>
+			    <div class="progress" data-ng-show="progress >= 0">
+			        <div style="width:{{progress}}%" data-ng-bind="progress + '%'"></div>
+			    </div>
+	 			
+			    <br>Files:
+			    <ul>
+			        <li data-ng-repeat="f in files" style="font:smaller">
+			            {{f.name}}
+			        </li>
+			    </ul>
+			    {{errorMsg}}                           
+              </div>
+            </div>
+          </div>          
+
+          <!-- begin:pagination -->
+          <div class="col-md-12" data-ng-show="false">
+            <ul class="pagination box">
+              <li><a href="#">&laquo;</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">&raquo;</a></li>
+            </ul>
+          </div>
+          <!-- end:pagination -->
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+    <!-- begin:footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <p>Copyright &copy; 2009-2016, IDEM Software House. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <ul class="list-inline">
+                <li><a href="#/policy">Terms Of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:footer -->

@@ -1,0 +1,22 @@
+subprojects {
+    apply plugin: 'java'
+    group = 'eu.dicom-viewer'
+    version = '1.0'
+repositories {
+    maven{
+    	url "http://repository.jboss.org/nexus/content/repositories/thirdparty-releases/"	
+    }
+    maven{
+    	url "http://www.dcm4che.org/maven2"
+    }        
+    mavenCentral()
+}
+}
+
+evaluationDependsOn(':dcm-html5')
+
+task build(type: Copy) {
+    dependsOn project(':dcm-html5').war
+    from(project(':dcm-html5').war) 
+    into project.file('build')
+}

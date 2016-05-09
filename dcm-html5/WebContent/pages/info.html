@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+	  <button type="button" class="navbar-toggle menu-button" data-ng-click="expanded = !expanded">
+		<span class="glyphicon glyphicon-align-justify"></span>
+	  </button>                    
+      <a class="navbar-brand" href="index.html"><span>DICOM</span> HTML5 viewer</a> 
+    </div>
+    <div class="collapse navbar-collapse" data-uib-collapse="!expanded">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/viewer/{{$routeParams.image}}" title="Back to viewer">Viewer <i class="fa fa-television"></i></a></li>
+        <li><a href="#/studies" title="Back to library">Library <i class="fa fa-list-alt"></i></a></li>
+        <li data-ng-show="false"><a href="settings.html">Settings <i class="fa fa-edit"></i></a></li>
+        <li data-ng-show="false"><a href="about.html">About</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->      
+</nav>	
+
+<div class="panel panel-default info">
+  <div class="panel-heading">Image DICOM headers</div>
+  <table class="table">
+	<tr data-ng-repeat="h in headers">
+		<td>{{h.key}}</td>
+		<td>{{h.value}}</td>
+	</tr>
+  </table>
+</div>

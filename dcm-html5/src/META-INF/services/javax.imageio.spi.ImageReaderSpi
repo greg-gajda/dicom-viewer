@@ -1,0 +1,4 @@
+org.dcm4che3.imageio.plugins.dcm.DicomImageReaderSpi
+com.sun.imageio.plugins.jpeg.JPEGImageReaderSpi
+com.sun.media.imageioimpl.plugins.jpeg2000.J2KImageReaderSpi
+org.dcm4che3.imageio.plugins.rle.RLEImageReaderSpi

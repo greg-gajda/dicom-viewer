@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="pl" data-ng-app="viewer"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="pl" data-ng-app="viewer"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="pl" data-ng-app="viewer"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pl" data-ng-app="viewer"> <!--<![endif]-->
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DICOM HTML5 viewer</title>
+<link rel="stylesheet" href="lib/bower/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="lib/bower/font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/viewer.css"/>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700,600" type="text/css">
+</head>
+<body>
+<div data-ng-cloak>
+	<div data-ng-view></div>
+</div>
+  <script type="text/javascript" src="lib/bower/jquery/dist/jquery.min.js"></script>  
+  <script type="text/javascript" src="lib/bower/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script type="text/javascript" src="lib/bower/masonry/dist/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="lib/bower/angular/angular.min.js"></script>
+  <script type="text/javascript" src="lib/bower/angular-cookies/angular-cookies.min.js"></script>
+  <script type="text/javascript" src="lib/bower/angular-resource/angular-resource.min.js"></script>
+  <script type="text/javascript" src="lib/bower/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="lib/bower/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script type="text/javascript" src="lib/bower/fabric/dist/fabric.min.js"></script>
+  <script type="text/javascript" src="lib/bower/transformation-matrix-js/matrix.min.js"></script>  
+  <script type="text/javascript" src="lib/bower/ng-file-upload/ng-file-upload.min.js"></script>
+  <script type="text/javascript" src="lib/bower/three.js/three.min.js"></script>
+  
+  <script type="text/javascript" src="js/viewer.js"></script>
+  <script type="text/javascript" src="js/base-controllers.js"></script>
+  <script type="text/javascript" src="js/viewer-controllers.js"></script>
+  <script type="text/javascript" src="js/viewer-services.js"></script>
+  <script type="text/javascript" src="js/viewer-directives.js"></script>
+  <script type="text/javascript" src="js/measurements.js"></script>
+  <script type="text/javascript" src="js/threejs-renderer.js"></script>
+  <script type="text/javascript" src="js/trackball-controls.js"></script>
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "SoftwareApplication",
+"name": "Dicom html5 viewer",
+"image": "http://dicom-viewer.eu/illustration.png",
+"description": "Html5 dicom medical images viewer with JEE backend, Multi Plannar Reconstructions support and Surface Rendering",
+"operatingSystem": "Windows,Mac,Linux",
+"author": {
+ "@type": "Organization",
+ "url": "www.id-em.pl",
+ "name": "IDEM Software House",
+ "url" : "http://www.id-em.pl",
+ "logo": "http://www.id-em.pl/images/logo.png",
+ "contactPoint" : [{
+  "@type" : "ContactPoint",
+  "url" : "http://www.id-em.pl",
+  "email" : "biuro@id-em.pl",
+  "contactType" : "customer service"
+ }]
+},
+"datePublished": "2016-04-05",
+"description" : "Html5 dicom medical images viewer with JEE backend, Multi Plannar Reconstructions support and Surface Rendering",
+"applicationCategory" : "Healthcare",
+"Offers": {
+ "@type" : "Offer",
+ "price" : "0"
+}}
+</script>  
+</body>
+</html>

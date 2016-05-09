@@ -1,0 +1,28 @@
+{
+  "name": "html5-dicom-viewer",
+  "version": "1.0",
+  "homepage": "http://www.dicom-viewer.eu/",
+  "authors": [
+    "Grzegorz Gajda"
+  ],
+  "description": "Dicom html5 viewer",
+  "keywords": [
+    "DICOM"
+  ],
+  "license": "Apache Software License 2.0.",
+  "dependencies": {
+    "angular": "1.5.0",
+    "angular-cookies": "1.5.0",
+    "angular-route": "1.5.0",
+    "angular-resource": "1.5.0",
+    "bootstrap": "3.3.5",
+    "angular-bootstrap": "1.2.4",
+    "fabric": "1.5.0",
+    "transformation-matrix-js": "2.6.5",
+    "font-awesome": "4.5.0",
+    "ng-file-upload": "12.0.4",
+    "masonry": "4.0.0",
+    "imagesloaded": "4.1.0",
+    "three.js": "0.75.0"
+  }
+}

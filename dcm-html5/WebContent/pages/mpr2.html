@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+	  <button type="button" class="navbar-toggle menu-button" data-ng-click="expanded = !expanded">
+		<span class="glyphicon glyphicon-align-justify"></span>
+	  </button>                
+      <a class="navbar-brand" href="index.html"><span>DICOM</span> HTML5 viewer</a> 
+    </div>
+
+    <div class="collapse navbar-collapse" data-uib-collapse="!expanded">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/viewer/{{viewerImage}}" title="Back to viewer">Viewer <i class="fa fa-television"></i></a></li>
+        <li><a href="#/studies" title="Back to Library">Library <i class="fa fa-list-alt"></i></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->      
+</nav>	
+<div id="spinner" class="loading">
+<img data-ng-src="images/spinner.gif" class="img-loading">
+</div>			
+<div id="content" >
+  <div class="container" >
+    <div class="row">
+      <div class="col-md-1 col-sm-12 col-xs-12">
+		<div data-ng-include data-src="'pages/toolbar.html'" class="toolbar"></div>      
+      </div>
+      
+      <div class="col-md-11 col-sm-12 col-xs-12"> 
+        <div class="row">     
+        <div class="col-md-6 col-sm-12 col-xs-12">
+			<div id="unknown-container" data-ng-class="{'selected-container': projection == 'UNKNOWN'}" >			
+				<canvas id="unknown-viewer"></canvas>
+				<div class="slider" data-ng-show="showSlider['UNKNOWN']">
+              		<input type="range" step="1" min="0" max="{{series['UNKNOWN'].images.length -1}}" data-ng-change="slide('UNKNOWN');clearMpr();" data-ng-model="slider['UNKNOWN']" />
+            	</div>										
+			</div>    
+		</div>  
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div id="oblique-container" data-ng-class="{'selected-container': projection == 'OBLIQUE'}">			
+				<canvas id="oblique-viewer"></canvas>
+			</div>
+		</div>            
+		</div>
+      </div>
+    </div>
+  </div>
+</div>

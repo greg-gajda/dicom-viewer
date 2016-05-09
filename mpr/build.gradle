@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+compileJava.options.encoding = 'UTF-8'
+
+sourceCompatibility = 1.8
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    	resources {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDir 'test'
+        }
+    	resources {
+            srcDir 'test'
+        }    
+    } 
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-log4j12:1.7.14'
+    compile 'org.dcm4che:dcm4che-core:3.3.7'
+    compile 'org.dcm4che:dcm4che-image:3.3.7'
+    compile 'org.dcm4che:dcm4che-imageio:3.3.7'
+    compile 'org.dcm4che:dcm4che-imageio-rle:3.3.7'
+    compile 'com.sun.media:jai_imageio:1.2-pre-dr-b04'
+    compile 'java3d:vecmath:1.3.1'
+    compile 'javax.media:jai-core:1.1.3'
+    compile 'com.amazonaws:aws-java-sdk:1.10.69'
+   
+    testCompile 'junit:junit:4.12'
+}
+

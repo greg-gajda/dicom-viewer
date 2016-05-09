@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+	  <button type="button" class="navbar-toggle menu-button" data-ng-click="expanded = !expanded">
+		<span class="glyphicon glyphicon-align-justify"></span>
+	  </button>                
+      <a class="navbar-brand" href="index.html"><span>DICOM</span> HTML5 viewer</a> 
+    </div>
+
+    <div class="collapse navbar-collapse" data-uib-collapse="!expanded">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/viewer/{{viewerImage}}" title="Back to viewer">Viewer <i class="fa fa-television"></i></a></li>
+        <li><a href="#/studies" title="Back to Library">Library <i class="fa fa-list-alt"></i></a></li>
+        <li data-ng-show="false"><a href="settings.html">Settings <i class="fa fa-edit"></i></a></li>
+        <li data-ng-show="false"><a href="about.html">About</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->      
+</nav>	
+<div id="spinner" class="loading">
+<img data-ng-src="images/spinner.gif" class="img-loading">
+</div>			
+<div id="content" >
+  <div class="container" >
+    <div class="row">
+      <div class="col-md-1 col-sm-12 col-xs-12">
+		<div data-ng-include data-src="'pages/toolbar.html'" class="toolbar"></div>      
+      </div>
+      
+      <div class="col-md-11 col-sm-12 col-xs-12"> 
+        <div class="row">     
+        <div class="col-md-6 col-sm-12 col-xs-12">
+			<div id="axial-container" data-ng-class="{'selected-container': projection == 'AXIAL'}" >			
+				<canvas id="axial-viewer"></canvas>
+				<div class="slider" data-ng-show="showSlider['AXIAL']">
+              		<input type="range" step="1" min="0" max="{{series['AXIAL'].images.length -1}}" data-ng-change="slide('AXIAL')" data-ng-model="slider['AXIAL']" />
+            	</div>										
+			</div>    
+		</div>  
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div id="coronal-container" data-ng-class="{'selected-container': projection == 'CORONAL'}">			
+				<canvas id="coronal-viewer"></canvas>
+				<div class="slider" data-ng-show="showSlider['CORONAL']">
+              		<input type="range" step="1" min="0" max="{{series['CORONAL'].images.length -1}}" data-ng-change="slide('CORONAL')" data-ng-model="slider['CORONAL']" />
+            	</div>											
+			</div>
+		</div>            
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div id="sagittal-container" data-ng-class="{'selected-container': projection == 'SAGITTAL'}" >			
+				<canvas id="sagittal-viewer"></canvas>
+				<div class="slider" data-ng-show="showSlider['SAGITTAL']">
+              		<input type="range" step="1" min="0" max="{{series['SAGITTAL'].images.length -1}}" data-ng-change="slide('SAGITTAL')" data-ng-model="slider['SAGITTAL']" />
+            	</div>											
+			</div>      
+		</div>      
+		</div>
+      </div>
+    </div>
+  </div>
+</div>

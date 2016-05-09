@@ -1,0 +1,54 @@
+			<ul class="nav navbar-nav ">					
+				<li title="Close"><a data-ng-click="close()"><i class="fa fa-close fa-lg"></i></a></li>
+				<li title="Refresh"><a data-ng-click="refreshImage()"><i class="fa fa-refresh fa-lg"></i></a></li>
+				<li title="Toggle annotations" data-ng-show="canvas[projection].showAnnotations !== undefined">
+				<a data-ng-click="toggleAnnotations()">
+					<i data-ng-show="displayAnnotations" class="fa fa-toggle-off fa-lg"></i>
+					<i data-ng-hide="displayAnnotations" class="fa fa-toggle-on fa-lg"></i>
+				</a>
+				</li>								
+				<li data-ng-hide="true" title="Magnifier"><a data-ng-click="magnifierImage()"><i class="fa fa-square-o fa-lg"></i></a></li>
+				<li title="Cinema"><a data-ng-click="cinema()">
+					<i data-ng-show="cine == false" class="fa fa-play-circle-o fa-lg"></i>
+					<i data-ng-show="cine == true" class="fa fa-pause-circle-o fa-lg selected"></i>
+				</a></li>
+				<li title="Continous window level" data-uib-dropdown data-is-open="dropdown.openWCWW">
+					<a data-ng-class="{'open': dropdown.openWCWW == true}"
+						data-ng-mouseenter="dropdown.openWCWW ? dropdown.showWCWW=false : dropdown.showWCWW=true" data-ng-mouseleave="dropdown.showWCWW=false" 
+						data-ng-click="wcwwImage()"><i class="fa fa-sun-o fa-lg" data-ng-class="{'selected': action.mode == 'WCWW'}" ></i></a>
+					<a data-uib-dropdown-toggle title="Expand predefined window levels" class="line" 
+						data-ng-show="dropdown.showWCWW" 
+						data-ng-mouseenter="dropdown.showWCWW=true" 
+						data-ng-mouseleave="dropdown.showWCWW=false"
+						data-ng-click="dropdown.showWCWW=false"><i class="fa fa-hand-o-down fa-lg"></i></a>				
+					<ul data-uib-dropdown-menu role="menu" class="toolbar-dropdown">
+					  <li role="menuitem" data-ng-repeat="wl in windowlevel"><a data-ng-click="selectWCWW(wl)">{{wl.name}}</a></li>
+					</ul>									
+				</li>				
+				<li data-ng-hide="projections.length > 1" title="Select measurement tool" data-uib-dropdown data-is-open="dropdown.openMeasurements">
+					<a data-uib-dropdown-toggle 
+					   data-ng-class="{'open': dropdown.openMeasurements == true}"
+					   data-ng-mouseenter="dropdown.openMeasurements ? dropdown.showMeasurements=false : dropdown.showMeasurements=true" 
+					   data-ng-mouseleave="dropdown.showMeasurements=false" data-ng-click="measurements('')">
+					   <i class="fa fa-ellipsis-h fa-lg" data-ng-class="{'selected': measurement(action.mode) !== undefined}" ></i></a>
+					<ul data-uib-dropdown-menu role="menu" class="toolbar-dropdown">
+					  <li role="menuitem"><a data-ng-click="measurements('LINE')">Length</a></li>
+					  <li role="menuitem"><a data-ng-click="measurements('RECTANGLE')">Rectangle</a></li>
+					  <li role="menuitem"><a data-ng-click="measurements('TETRAGON')">Tetragon</a></li>
+					  <li role="menuitem"><a data-ng-click="measurements('ELLIPSE')">Ellipse</a></li>
+					  <li role="menuitem"><a data-ng-click="measurements('ANGLE')">Angle</a></li>
+					</ul>					
+				</li>
+				<li data-ng-show="projections.length > 2" title="Images synchronization"><a data-ng-click="sync()"><i class="fa fa-crosshairs fa-lg" data-ng-class="{'selected': action.mode == 'SYNC'}" ></i></a></li>
+				<li data-ng-show="projections.length == 2" title="Oblique reconstruction"><a data-ng-click="oblique()"><i class="fa fa-crosshairs fa-lg" data-ng-class="{'selected': action.mode == 'OBLIQUE'}" ></i></a></li>
+				<li title="Rotate left"><a data-ng-click="rotateLImage()"><i class="fa fa-undo fa-lg"></i></a></li>
+				<li title="Rotate right"><a data-ng-click="rotateRImage()"><i class="fa fa-repeat fa-lg"></i></a></li>		
+				<li title="Zoom in"><a data-ng-click="zoomInImage()"><i class="fa fa-search-plus fa-lg"></i></a></li>
+				<li title="Zoom out"><a data-ng-click="zoomOutImage()"><i class="fa fa-search-minus fa-lg"></i></a></li>
+				<li title="Zoom"><a data-ng-click="zoomImage()"><i class="fa fa-search fa-lg" data-ng-class="{'selected': action.mode == 'ZOOM'}" ></i></a></li>
+				<li title="Move"><a data-ng-click="moveImage()"><i class="fa fa-arrows-alt fa-lg" data-ng-class="{'selected': action.mode == 'MOVE'}" ></i></a></li>
+				<li title="Flip X"><a data-ng-click="flipXImage()"><i class="fa fa-arrows-h fa-lg"></i></a></li>
+				<li title="Flip Y"><a data-ng-click="flipYImage()"><i class="fa fa-arrows-v fa-lg"></i></a></li>				
+				<li data-ng-hide="projections.length == 2" title="Invert"><a data-ng-click="invertImage()"><i class="fa fa-adjust fa-lg"></i></a></li>				
+				<li data-ng-hide="projections.length == 2" title="Sharpen"><a data-ng-click="sharpenImage()"><i class="fa fa-bullseye fa-lg"></i></a></li>							
+			</ul>      

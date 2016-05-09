@@ -1,0 +1,53 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+compileJava.options.encoding = 'UTF-8'
+
+sourceCompatibility = 1.8
+
+version = '1.0'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    	resources {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDir 'test'
+        }
+    	resources {
+            srcDir 'test'
+        }    
+    }    
+}
+webAppDirName = 'WebContent'
+
+war{    
+	classpath = classpath.filter{file ->
+    		file.name.startsWith('mpr') || file.name.startsWith('main')
+	}
+	manifest {
+		attributes 'Dependencies': 'dcm4che,aws'
+	}  
+}
+
+dependencies {
+    compile project(':mpr')
+    compile 'org.slf4j:slf4j-log4j12:1.7.14'
+    compile 'org.jboss.spec:jboss-javaee-7.0:1.0.3.Final'
+    compile 'org.dcm4che:dcm4che-core:3.3.7'
+    compile 'org.dcm4che:dcm4che-image:3.3.7'
+    compile 'org.dcm4che:dcm4che-imageio:3.3.7'
+    compile 'org.dcm4che:dcm4che-imageio-rle:3.3.7'
+    compile 'com.sun.media:jai_imageio:1.2-pre-dr-b04'
+    compile 'java3d:vecmath:1.3.1'
+    compile 'javax.media:jai-core:1.1.3'
+    compile 'com.amazonaws:aws-java-sdk:1.10.69'
+
+    testCompile 'junit:junit:4.12'    
+}

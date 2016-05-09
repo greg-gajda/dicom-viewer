@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+	  <button type="button" class="navbar-toggle menu-button" data-ng-click="expanded = !expanded">
+		<span class="glyphicon glyphicon-align-justify"></span>
+	  </button>    
+      <a class="navbar-brand" href="index.html"><span>DICOM</span> HTML5 viewer</a> 
+    </div>
+    <div class="collapse navbar-collapse" data-uib-collapse="!expanded">
+      <ul class="nav navbar-nav navbar-right" >
+        <li data-uib-dropdown data-is-open="dropdown.openMpr" data-ng-show="series[projection].projection == 'AXIAL' && series[projection].images.length > 10">
+        	<a data-uib-dropdown-toggle data-ng-class="{'open': dropdown.openMpr == true}"
+        		title="Multi Planar Reconstruction">MPR <i class="fa fa-stack-overflow"></i></a>
+			<ul data-uib-dropdown-menu role="menu" class="toolbar-dropdown">
+			  <li role="menuitem"><a href="#/mpr/{{mpr().seriesId}}/{{mpr().sopInstanceUID}}">Orthogonal</a></li>
+			  <li role="menuitem"><a href="#/mpr2/{{mpr().seriesId}}/{{mpr().sopInstanceUID}}">Oblique / Curved</a></li>
+			</ul>					        
+        </li>
+        <li><a href="#/info/{{image[projection].sopInstanceUID}}" title="Dicom headers">Image info <i class="fa fa-info-circle"></i></a></li>
+        <li><a href="#/studies" title="Back to library">Library <i class="fa fa-list-alt"></i></a></li>        
+        <li data-ng-show="false"><a href="settings.html">Settings <i class="fa fa-edit"></i></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->      
+</nav>	
+<div id="spinner" class="loading">
+<img data-ng-src="images/spinner.gif" class="img-loading">
+</div>			
+<div id="content" >
+  <div class="container" >
+    <div class="row">
+      <div class="col-md-1 col-sm-12 col-xs-12">
+		<div data-ng-include data-src="'pages/toolbar.html'" class="toolbar"></div>      
+      </div>
+      
+      <div class="col-md-8 col-sm-12 col-xs-12">      
+		<div id="image-container" >
+			<div style="overflow:auto; margin:auto; display: block; position: relative;">
+				<canvas id="viewer"></canvas>
+				<div class="slider" data-ng-show="showSlider[projection]">
+              		<input type="range" step="1" min="0" max="{{series[projection].images.length - 1}}" data-ng-change="slide(projection)" data-ng-model="slider[projection]" />
+            	</div>				
+				
+			</div>
+		</div>      
+      </div>
+      <div class="col-md-offset-0 col-md-3 col-sm-12 col-xs-12">
+            <div class="series-container" data-ng-repeat="(k,s) in series" data-ng-hide="k == 'UNKNOWN'">
+              <div class="series-desc">
+                <h2>{{s.seriesDescription || s.seriesInstanceUID}}
+                	<a class="series-btn" data-ng-show="false"><i class="fa fa-align-justify"></i></a>
+                </h2>
+              </div>            
+              <div class="images">
+	            <div data-ng-repeat="i in s.images" style="float:left;margin-bottom: 3px">								
+					<img data-ng-click="changeImage(s.index, i.sopInstanceUID)" width="60" height="60"
+						class="image-small" data-ng-src="{{thumbnail(i.sopInstanceUID)}}" />
+				</div>              
+              </div>
+            </div>
+      
+      </div>    
+    </div>
+  </div>
+</div>
