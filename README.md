@@ -5,8 +5,6 @@ The whole project is divided into two modules:
 * mpr, which contains features of orthogonal and oblique/curved Multi Planar Reconstruction,
 * dcm-html5, which contains actual web application.
 
-Demo version is available at: [www.dicom-viewer.eu](http://www.dicom-viewer.eu)
-
 ## MPR
 MPR module is based on work done by [Weasis](https://github.com/nroduit/Weasis) team.
 All unnecessary dependencies are removed, so MPR code can be easily executed.
